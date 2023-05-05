@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -21,12 +21,17 @@ public class OrderController {
 
 
     @GetMapping("/add")
-    public String addProduct(@RequestParam("id") List<Integer> id){
+    public String addProduct(@RequestParam("id") String id) {
+        try {
             orderService.addCart(id);
             return "Товар добавлен в корзину";
+        } catch (NumberFormatException e) {
+            return "Неверно введен артикул товара: " + e.getMessage();
+        }
     }
+
     @GetMapping("/get")
-    public List<Integer> getOrder(){
+    public List<Integer> getOrder() {
         return orderService.getCart();
     }
 

@@ -12,11 +12,11 @@ public class Cart {
 
     private List<Integer> cart = new ArrayList<>();
 
-    public void addCart(List<Integer> id){
-        cart.addAll(id);
+    public void addCart(int id) {
+        cart.add(id);
     }
 
-    public List<Integer> getCart(){
+    public List<Integer> getCart() {
         return cart;
     }
 
